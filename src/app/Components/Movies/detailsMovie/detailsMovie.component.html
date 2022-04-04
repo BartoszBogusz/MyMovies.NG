@@ -1,0 +1,7 @@
+<div id="container" class="mt-5">
+    <h3>Title: {{movie.title}}</h3>
+    <p><em>Modification date: {{movie.lastModified | date :'dd-MM-yyyy, HH-mm-ss'}}</em></p>
+    <p><em>Disk: {{movie.disk.name}}</em></p>
+    <a class="btn btn-warning mr-2" style="margin-right: 15px;" href="/movieUpdate/{{movie.id}}" role="button">Edit</a>
+    <a class="btn btn-danger" style="margin-right: 15px;" href="/movieDelete/{{movie.id}}" role="button">Delete</a>
+</div>

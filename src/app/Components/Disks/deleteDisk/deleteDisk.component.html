@@ -1,0 +1,32 @@
+<div id="container">
+
+    <div *ngIf="!deleted">
+
+        <h2 >Are you sure?</h2>
+
+        <div class="col-md-12 text-center mt-3">
+
+            <button class="btn btn-danger" style="margin-right: 15px;" type="submit" (click)="onDelete()">Delete disk</button>
+            <button class="btn btn-primary" style="margin-right: 15px;" type="button" routerLink="/disks">Back to disks</button>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="deleted">
+
+        <div class="justify-content-md-center">
+
+            <h2>Disk removed successfully!</h2>
+
+            <div class="col-md-12 text-center mt-3">
+
+                <button class="btn btn-info" routerLink="/">Main page</button>  
+            
+            </div>
+
+        </div>
+    
+    </div>
+
+</div>

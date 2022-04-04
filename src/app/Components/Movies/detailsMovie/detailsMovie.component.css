@@ -1,0 +1,10 @@
+#container{
+    color: white;
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+p{
+    font-size: 16px;
+}

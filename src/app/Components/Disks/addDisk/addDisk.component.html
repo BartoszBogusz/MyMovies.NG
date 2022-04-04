@@ -1,0 +1,61 @@
+<div id="container">
+
+  <div class="submit-form">
+
+    <div *ngIf="!submitted">
+
+      <h2> Adding new disk</h2>
+
+      <div class="form-group mt-4">
+
+        <label for="disk-name">Name:</label>
+        <input type="text" class="form-control  mt-2" id="name" placeholder="Disk name" name="name" [(ngModel)]="newDisk.name" required #diskName="ngModel">
+      
+      </div>
+
+      <div id="buttons" class="mt-4">
+
+        <div *ngIf="newDisk.name == ''">
+
+          <button class="btn btn-success" disabled>Add disk</button>
+
+        </div>
+
+        <div *ngIf="newDisk.name != ''">
+
+          <button class="btn btn-success" type="submit" (click)="onSubmit()">Add disk</button>
+        
+        </div>
+
+      </div>
+  
+      <div style="color:red" *ngIf="diskName.errors">    
+            
+        <p *ngIf="diskName.errors && (diskName.dirty || diskName.touched)">         
+            Disk name is reqired!    
+        </p> 
+
+      </div>
+
+    </div>
+
+  </div>
+    
+  <div *ngIf="submitted">
+
+    <div class="justify-content-md-center">
+
+        <h2>Disk added successfully!</h2>
+
+        <div class="col-md-12 text-center mt-3">
+
+          <button class="btn btn-success" style="margin-right: 15px;" (click)="addNewDisk()">Add new</button>  
+          <button class="btn btn-primary" routerLink="/disks">Back to disks</button>
+        
+        </div>
+
+    </div>
+
+  </div>
+
+</div>

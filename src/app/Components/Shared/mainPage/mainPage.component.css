@@ -1,0 +1,48 @@
+.container {
+    margin-top: 80px
+}
+
+.counter-box {
+    display: block;
+    background: transparent;
+    padding: 40px 20px 37px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.counter-box i {
+    font-size: 80px;
+    margin: 0 0 15px;
+}
+
+.counter {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 28px
+}
+  
+.link-box{
+    display: inline-block;
+    border: 2px solid #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+.link-box:hover {
+    color: #ffffff;
+    background-color: #666666;
+  }
+
+a.link{
+    text-decoration: none;
+    display: block;
+    color: #fff;
+  }
+
+a.link:hover{
+    color: #ffffff;
+  }
+
+  

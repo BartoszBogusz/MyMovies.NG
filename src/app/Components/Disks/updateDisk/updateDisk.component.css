@@ -1,0 +1,15 @@
+#container{
+    color: white;
+    width: 400px;
+    margin: auto;
+}
+
+#buttons{
+    text-align: center;
+}
+
+.error-message{
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}

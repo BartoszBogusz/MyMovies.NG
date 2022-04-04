@@ -1,0 +1,22 @@
+.container{
+    color: white;
+  }
+  
+  .my-pagination /deep/ .ngx-pagination {
+    background: rgb(37, 37, 37);
+    text-align: center;
+  }
+  
+  .my-pagination /deep/ .ngx-pagination .current {
+    background: white;
+    color: black;
+  }
+  
+  .my-pagination /deep/ .ngx-pagination .page-number span:hover{
+    background: brown;
+  }
+  
+  .my-pagination /deep/ .ngx-pagination li:hover {
+    color: black;
+  }
+  

@@ -1,0 +1,103 @@
+<div class="container">
+  
+  <div class="col-md-8">
+
+    <div class="input-group mb-3">
+
+      <input type="text" class="form-control" placeholder="Search by title" [(ngModel)]="movieQuery.searchPhrase" (keyup.enter)="onEnter()"/>
+
+      <div class="input-group-append">
+
+        <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">Search</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <h2>Movies list</h2>
+
+  <table class="table table-hover table-dark table-bordered table-sm">
+
+    <thead>
+
+      <tr>
+
+        <th scope="col">#</th>
+        <th scope="col" (click)="sort('Title')">Title &nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col" (click)="sort('LastModified')">Last modified &nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col" (click)="sort('Name')">Disk Name &nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col">Watched</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let movie of movies.items; let i = index;" >
+
+        <th scope="row">{{i + 1 + ((movieQuery.pageNumber -1) *movieQuery.pageSize) }}</th>
+        <td routerLink="/movieDetails/{{ movie.id }}">{{movie.title}}</td>
+        <td>{{movie.lastModified | date :'dd-MM-yyyy, HH-mm-ss'}}</td>
+        <td>{{movie.disk.name}}</td>
+        <td style="text-align: center;">
+          <div *ngIf="movie.isWatched">
+            <i class="fa-solid fa-square-check"></i>
+          </div>
+          <div *ngIf="!movie.isWatched">
+            <i class="fa-solid fa-rectangle-xmark"></i>
+          </div>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <div class="row">
+
+    <div class="col-md-10">
+
+      <pagination-controls class="my-pagination" [responsive]="true" previousLabel="Prev" nextLabel="Next" (pageChange)="handlePageChange($event)"></pagination-controls>
+
+
+      <ul class="list-group">
+
+
+        <li
+          class="list-group-item"
+          *ngFor="
+            let movie of movies.items | paginate : {
+              itemsPerPage: movieQuery.pageSize,
+              currentPage: movieQuery.pageNumber,
+              totalItems: movies.totalItemsCount
+            };
+            let i = index
+          "
+          ...
+        >
+          {{ movie.title }}
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="col-md-2">
+
+      <div id="items-per-page">
+        Items per Page:
+        <select (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

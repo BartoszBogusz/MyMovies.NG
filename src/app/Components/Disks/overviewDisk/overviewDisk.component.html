@@ -1,0 +1,88 @@
+<div class="container">
+  
+  <div class="col-md-8">
+
+    <div class="input-group mb-3">
+
+      <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="diskQuery.searchPhrase" (keyup.enter)="onEnter()"/>
+      
+      <div class="input-group-append">
+
+        <button class="btn btn-outline-secondary" type="button" (click)="searchName()">Search</button>
+      
+      </div>
+    
+    </div>
+  
+  </div>
+
+  <h2>Disks list</h2>
+
+  <table class="table table-hover table-dark table-bordered table-sm">
+
+    <thead>
+
+      <tr>
+
+        <th scope="col">#</th>
+        <th scope="col" (click)="sort('Name')">Name &nbsp;<i class="fa fa-sort"></i></th>
+      
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let disk of disks.items; let i = index;" >
+        <th scope="row">{{i + 1 + ((diskQuery.pageNumber -1) *diskQuery.pageSize) }}</th>
+        <td routerLink="/diskDetails/{{ disk.id }}">{{disk.name}}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <div class="row">
+
+    <div class="col-md-10">
+
+      <pagination-controls class="my-pagination" [responsive]="true" previousLabel="Prev" nextLabel="Next" (pageChange)="handlePageChange($event)"></pagination-controls>
+
+      <ul class="list-group">
+
+        <li
+          class="list-group-item"
+          *ngFor="
+            let disk of disks.items | paginate : {
+              itemsPerPage: diskQuery.pageSize,
+              currentPage: diskQuery.pageNumber,
+              totalItems: disks.totalItemsCount
+            };
+            let i = index
+          "
+          ...
+        >
+          {{ disk.name }}
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="col-md-2">
+
+      <div id="items-per-page">
+        Items per Page:
+        <select (change)="handlePageSizeChange($event)">
+
+          <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+        
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

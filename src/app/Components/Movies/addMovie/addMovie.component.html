@@ -1,0 +1,73 @@
+<div id="container">
+
+    <div class="submit-form">
+
+      <div *ngIf="!submitted">
+
+        <h2> Adding new movie</h2>
+
+        <div class="form-group mt-4">
+
+          <label for="movie-title">Title:</label>
+          <input type="text" id="title" class="form-control mt-2" placeholder="Movie title" name="title" [(ngModel)]="newMovie.title" required #movieTitle="ngModel">
+
+        </div>
+
+        <div class="form-group mt-2">
+
+          <label for="diskSelect"class="mb-2 mt-3">Disk select:</label>
+
+          <select class="form-select" aria-label="Default select example" id="diskSelect" [(ngModel)]="newMovie.diskId" [ngModelOptions]="{standalone: true}" required #movieDiskId="ngModel">
+            <option *ngFor="let disk of disks" [value]="disk.id"> {{disk.name}}</option>
+          </select>
+
+        </div>
+
+        <div id="buttons" class="mt-4">
+
+          <div *ngIf="(newMovie.title == '' || newMovie.diskId <= 0) ">
+
+            <button class="btn btn-success" disabled>Add movie</button>
+
+          </div>
+
+          <div *ngIf="(newMovie.title != '' && newMovie.diskId > 0) ">
+
+            <button class="btn btn-success" type="submit" (click)="onSubmit()">Add movie</button>
+
+          </div>
+
+        </div>
+
+        <div style="color:red" *ngIf="movieTitle.errors"> 
+                
+          <p *ngIf="movieTitle.errors && (movieTitle.dirty || movieTitle.touched)">         
+            Movie title is reqired!  
+          </p>
+
+        </div>
+
+      </div>
+      
+      <div *ngIf="submitted">
+
+        <div class="justify-content-md-center">
+
+          <h2>Movie added successfully!</h2>
+
+          <div class="col-md-12 text-center mt-3">
+
+            <button class="btn btn-success" style="margin-right: 15px;" (click)="addNewMovie()">Add new</button> 
+            <button class="btn btn-primary" routerLink="/movies">Back to movies</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+</div>

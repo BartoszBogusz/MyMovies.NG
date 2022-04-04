@@ -1,0 +1,55 @@
+<div id="container">
+
+  <div *ngIf="movie" class="edit-form">
+
+    <div class="submit-form">
+
+      <h2>Editing movie</h2>
+
+      <div class="form-group mt-4">
+
+        <label for="movie-title">Title:</label>
+        <input type="text" id="movie-title"  class="form-control mt-2" placeholder="Movie title" name="movieTitle" [(ngModel)]="movie.title" required #movieTitle="ngModel">
+
+      </div>
+
+      <label for="diskSelect"class="mb-2 mt-4">Disk select:</label>
+
+      <select class="form-control" id="diskSelect" [(ngModel)]="movie.disk.id" [ngModelOptions]="{standalone: true}" required required #movieDiskId="ngModel">
+        <option  *ngFor="let disk of disks" [value]="disk.id">{{disk.name}}</option>
+      </select>
+
+      <div class="form-check mt-3">
+
+        <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate" [checked]="movie.isWatched" (change)="movie.isWatched = !movie.isWatched">
+        <label class="form-check-label" for="flexCheckIndeterminate">Obejrzany</label>
+
+      </div>
+
+    </div>
+
+    <div id="buttons" class="mt-4">
+
+      <div *ngIf="movie.title == '' ">
+        <button class="btn btn-success" disabled>Update movie</button>
+      </div>
+  
+      <div *ngIf="movie.title != '' ">
+        <button class="btn btn-success" type="submit" (click)="onUpdate()">Update movie</button>
+      </div>
+
+    </div>
+
+    <div *ngIf="movieTitle.errors" id="error-message" class="mt-3">       
+        <p *ngIf="movieTitle.errors && (movieTitle.dirty || movieTitle.touched)">         
+          Movie title is required!    
+        </p>   
+    </div>
+
+  </div>
+
+  <div *ngIf="!movie" class="error-message">
+    <p>Cannot access this Movie...</p>
+  </div>
+
+</div>
